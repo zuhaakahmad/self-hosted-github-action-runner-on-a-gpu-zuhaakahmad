@@ -1,0 +1,19 @@
+name: GPU Accelerated Training
+
+on: [push]
+
+jobs:
+  train-on-gpu:
+    # This targets your cloud instance specifically
+    runs-on: [self-hosted, gpu-runner]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          pip install torch torchvision
+
+      - name: Execute ML Task
+        run: python3 train.py
